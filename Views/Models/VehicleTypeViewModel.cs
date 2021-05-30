@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class VehicleModel
+    public class VehicleTypeViewModel
     {
         public int id { get; set; }
-        public string name { get; set; }
+        public string Nombre { get; set; }
     }
 }

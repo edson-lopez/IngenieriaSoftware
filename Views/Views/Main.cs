@@ -7,13 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Controllers;
 
 namespace Views
 {
     public partial class Main : Form
     {
-        Controllers.VehicleController vehicleController = new Controllers.VehicleController();
         public Main()
         {
             InitializeComponent();
@@ -21,7 +19,38 @@ namespace Views
 
         private void Main_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = vehicleController.GetList();
+            //dataGridView1.DataSource = vehicleController.GetList();
+        }
+
+        private void btnNuevaOrden_Click(object sender, EventArgs e)
+        {
+            FrmNuevaOrden frm = new FrmNuevaOrden();
+            frm.ShowDialog();
+        }
+
+        private void btnOrdenes_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNuevoCliente_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEstadoFabrica_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDepartamentos_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

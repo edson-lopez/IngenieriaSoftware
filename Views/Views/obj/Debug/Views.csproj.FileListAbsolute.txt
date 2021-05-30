@@ -43,3 +43,4 @@ D:\UNEAT\ASIGNATURAS\Ingeniería de Software2\IngenieriaSoftware\Views\Views\bin
 D:\UNEAT\ASIGNATURAS\Ingeniería de Software2\IngenieriaSoftware\Views\Views\bin\Debug\System.Memory.xml
 D:\UNEAT\ASIGNATURAS\Ingeniería de Software2\IngenieriaSoftware\Views\Views\bin\Debug\System.Numerics.Vectors.xml
 D:\UNEAT\ASIGNATURAS\Ingeniería de Software2\IngenieriaSoftware\Views\Views\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\UNEAT\ASIGNATURAS\Ingeniería de Software2\IngenieriaSoftware\Views\Views\obj\Debug\Views.FrmNuevaOrden.resources
