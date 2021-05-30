@@ -1,0 +1,634 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="homesteadModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="brand">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="building">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_order_detail" Type="int" Nullable="false" />
+          <Property Name="id_department" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="client">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="lastname" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_factory" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="factory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_vehicle_model" Type="int" Nullable="false" />
+          <Property Name="id_client" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="order_detail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_order" Type="int" Nullable="false" />
+          <Property Name="id_vehicle_part" Type="int" Nullable="false" />
+          <Property Name="color" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="material" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vehicle_model">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_vehicle_type" Type="int" Nullable="false" />
+          <Property Name="id_brand" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vehicle_part">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vehicle_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="building_FK">
+          <End Role="department" Type="Self.department" Multiplicity="1" />
+          <End Role="building" Type="Self.building" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="building">
+              <PropertyRef Name="id_department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="building_FK_1">
+          <End Role="order_detail" Type="Self.order_detail" Multiplicity="1" />
+          <End Role="building" Type="Self.building" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="order_detail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="building">
+              <PropertyRef Name="id_order_detail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="department_FK">
+          <End Role="factory" Type="Self.factory" Multiplicity="1" />
+          <End Role="department" Type="Self.department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="factory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="department">
+              <PropertyRef Name="id_factory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="order_detail_FK">
+          <End Role="order" Type="Self.order" Multiplicity="1" />
+          <End Role="order_detail" Type="Self.order_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="order">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_detail">
+              <PropertyRef Name="id_order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="order_detail_FK_1">
+          <End Role="vehicle_part" Type="Self.vehicle_part" Multiplicity="1" />
+          <End Role="order_detail" Type="Self.order_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vehicle_part">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_detail">
+              <PropertyRef Name="id_vehicle_part" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="order_FK">
+          <End Role="client" Type="Self.client" Multiplicity="1" />
+          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="order_FK_1">
+          <End Role="vehicle_model" Type="Self.vehicle_model" Multiplicity="1" />
+          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vehicle_model">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="id_vehicle_model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vehicle_model_FK">
+          <End Role="brand" Type="Self.brand" Multiplicity="1" />
+          <End Role="vehicle_model" Type="Self.vehicle_model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="brand">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vehicle_model">
+              <PropertyRef Name="id_brand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vehicle_model_FK_1">
+          <End Role="vehicle_type" Type="Self.vehicle_type" Multiplicity="1" />
+          <End Role="vehicle_model" Type="Self.vehicle_model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vehicle_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vehicle_model">
+              <PropertyRef Name="id_vehicle_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="homesteadModelStoreContainer">
+          <EntitySet Name="brand" EntityType="Self.brand" Schema="homestead" store:Type="Tables" />
+          <EntitySet Name="building" EntityType="Self.building" Schema="homestead" store:Type="Tables" />
+          <EntitySet Name="client" EntityType="Self.client" Schema="homestead" store:Type="Tables" />
+          <EntitySet Name="department" EntityType="Self.department" Schema="homestead" store:Type="Tables" />
+          <EntitySet Name="factory" EntityType="Self.factory" Schema="homestead" store:Type="Tables" />
+          <EntitySet Name="order" EntityType="Self.order" Schema="homestead" store:Type="Tables" />
+          <EntitySet Name="order_detail" EntityType="Self.order_detail" Schema="homestead" store:Type="Tables" />
+          <EntitySet Name="vehicle_model" EntityType="Self.vehicle_model" Schema="homestead" store:Type="Tables" />
+          <EntitySet Name="vehicle_part" EntityType="Self.vehicle_part" Schema="homestead" store:Type="Tables" />
+          <EntitySet Name="vehicle_type" EntityType="Self.vehicle_type" Schema="homestead" store:Type="Tables" />
+          <AssociationSet Name="building_FK" Association="Self.building_FK">
+            <End Role="department" EntitySet="department" />
+            <End Role="building" EntitySet="building" />
+          </AssociationSet>
+          <AssociationSet Name="building_FK_1" Association="Self.building_FK_1">
+            <End Role="order_detail" EntitySet="order_detail" />
+            <End Role="building" EntitySet="building" />
+          </AssociationSet>
+          <AssociationSet Name="department_FK" Association="Self.department_FK">
+            <End Role="factory" EntitySet="factory" />
+            <End Role="department" EntitySet="department" />
+          </AssociationSet>
+          <AssociationSet Name="order_detail_FK" Association="Self.order_detail_FK">
+            <End Role="order" EntitySet="order" />
+            <End Role="order_detail" EntitySet="order_detail" />
+          </AssociationSet>
+          <AssociationSet Name="order_detail_FK_1" Association="Self.order_detail_FK_1">
+            <End Role="vehicle_part" EntitySet="vehicle_part" />
+            <End Role="order_detail" EntitySet="order_detail" />
+          </AssociationSet>
+          <AssociationSet Name="order_FK" Association="Self.order_FK">
+            <End Role="client" EntitySet="client" />
+            <End Role="order" EntitySet="order" />
+          </AssociationSet>
+          <AssociationSet Name="order_FK_1" Association="Self.order_FK_1">
+            <End Role="vehicle_model" EntitySet="vehicle_model" />
+            <End Role="order" EntitySet="order" />
+          </AssociationSet>
+          <AssociationSet Name="vehicle_model_FK" Association="Self.vehicle_model_FK">
+            <End Role="brand" EntitySet="brand" />
+            <End Role="vehicle_model" EntitySet="vehicle_model" />
+          </AssociationSet>
+          <AssociationSet Name="vehicle_model_FK_1" Association="Self.vehicle_model_FK_1">
+            <End Role="vehicle_type" EntitySet="vehicle_type" />
+            <End Role="vehicle_model" EntitySet="vehicle_model" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="homesteadModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="brand">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="vehicle_model" Relationship="Self.vehicle_model_FK" FromRole="brand" ToRole="vehicle_model" />
+        </EntityType>
+        <EntityType Name="building">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_order_detail" Type="Int32" Nullable="false" />
+          <Property Name="id_department" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="department" Relationship="Self.building_FK" FromRole="building" ToRole="department" />
+          <NavigationProperty Name="order_detail" Relationship="Self.building_FK_1" FromRole="building" ToRole="order_detail" />
+        </EntityType>
+        <EntityType Name="client">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="order" Relationship="Self.order_FK" FromRole="client" ToRole="order" />
+        </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_factory" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="building" Relationship="Self.building_FK" FromRole="department" ToRole="building" />
+          <NavigationProperty Name="factory" Relationship="Self.department_FK" FromRole="department" ToRole="factory" />
+        </EntityType>
+        <EntityType Name="factory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="department" Relationship="Self.department_FK" FromRole="factory" ToRole="department" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_vehicle_model" Type="Int32" Nullable="false" />
+          <Property Name="id_client" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="client" Relationship="Self.order_FK" FromRole="order" ToRole="client" />
+          <NavigationProperty Name="order_detail" Relationship="Self.order_detail_FK" FromRole="order" ToRole="order_detail" />
+          <NavigationProperty Name="vehicle_model" Relationship="Self.order_FK_1" FromRole="order" ToRole="vehicle_model" />
+        </EntityType>
+        <EntityType Name="order_detail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_order" Type="Int32" Nullable="false" />
+          <Property Name="id_vehicle_part" Type="Int32" Nullable="false" />
+          <Property Name="color" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="material" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="building" Relationship="Self.building_FK_1" FromRole="order_detail" ToRole="building" />
+          <NavigationProperty Name="order" Relationship="Self.order_detail_FK" FromRole="order_detail" ToRole="order" />
+          <NavigationProperty Name="vehicle_part" Relationship="Self.order_detail_FK_1" FromRole="order_detail" ToRole="vehicle_part" />
+        </EntityType>
+        <EntityType Name="vehicle_model">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_vehicle_type" Type="Int32" Nullable="false" />
+          <Property Name="id_brand" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="brand" Relationship="Self.vehicle_model_FK" FromRole="vehicle_model" ToRole="brand" />
+          <NavigationProperty Name="order" Relationship="Self.order_FK_1" FromRole="vehicle_model" ToRole="order" />
+          <NavigationProperty Name="vehicle_type" Relationship="Self.vehicle_model_FK_1" FromRole="vehicle_model" ToRole="vehicle_type" />
+        </EntityType>
+        <EntityType Name="vehicle_part">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="order_detail" Relationship="Self.order_detail_FK_1" FromRole="vehicle_part" ToRole="order_detail" />
+        </EntityType>
+        <EntityType Name="vehicle_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="vehicle_model" Relationship="Self.vehicle_model_FK_1" FromRole="vehicle_type" ToRole="vehicle_model" />
+        </EntityType>
+        <Association Name="vehicle_model_FK">
+          <End Role="brand" Type="Self.brand" Multiplicity="1" />
+          <End Role="vehicle_model" Type="Self.vehicle_model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="brand">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vehicle_model">
+              <PropertyRef Name="id_brand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="building_FK">
+          <End Role="department" Type="Self.department" Multiplicity="1" />
+          <End Role="building" Type="Self.building" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="building">
+              <PropertyRef Name="id_department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="building_FK_1">
+          <End Role="order_detail" Type="Self.order_detail" Multiplicity="1" />
+          <End Role="building" Type="Self.building" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="order_detail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="building">
+              <PropertyRef Name="id_order_detail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="order_FK">
+          <End Role="client" Type="Self.client" Multiplicity="1" />
+          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="department_FK">
+          <End Role="factory" Type="Self.factory" Multiplicity="1" />
+          <End Role="department" Type="Self.department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="factory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="department">
+              <PropertyRef Name="id_factory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="order_detail_FK">
+          <End Role="order" Type="Self.order" Multiplicity="1" />
+          <End Role="order_detail" Type="Self.order_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="order">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_detail">
+              <PropertyRef Name="id_order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="order_FK_1">
+          <End Role="vehicle_model" Type="Self.vehicle_model" Multiplicity="1" />
+          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vehicle_model">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="id_vehicle_model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="order_detail_FK_1">
+          <End Role="vehicle_part" Type="Self.vehicle_part" Multiplicity="1" />
+          <End Role="order_detail" Type="Self.order_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vehicle_part">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_detail">
+              <PropertyRef Name="id_vehicle_part" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vehicle_model_FK_1">
+          <End Role="vehicle_type" Type="Self.vehicle_type" Multiplicity="1" />
+          <End Role="vehicle_model" Type="Self.vehicle_model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vehicle_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vehicle_model">
+              <PropertyRef Name="id_vehicle_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="homesteadEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="brand" EntityType="Self.brand" />
+          <EntitySet Name="building" EntityType="Self.building" />
+          <EntitySet Name="client" EntityType="Self.client" />
+          <EntitySet Name="department" EntityType="Self.department" />
+          <EntitySet Name="factory" EntityType="Self.factory" />
+          <EntitySet Name="order" EntityType="Self.order" />
+          <EntitySet Name="order_detail" EntityType="Self.order_detail" />
+          <EntitySet Name="vehicle_model" EntityType="Self.vehicle_model" />
+          <EntitySet Name="vehicle_part" EntityType="Self.vehicle_part" />
+          <EntitySet Name="vehicle_type" EntityType="Self.vehicle_type" />
+          <AssociationSet Name="vehicle_model_FK" Association="Self.vehicle_model_FK">
+            <End Role="brand" EntitySet="brand" />
+            <End Role="vehicle_model" EntitySet="vehicle_model" />
+          </AssociationSet>
+          <AssociationSet Name="building_FK" Association="Self.building_FK">
+            <End Role="department" EntitySet="department" />
+            <End Role="building" EntitySet="building" />
+          </AssociationSet>
+          <AssociationSet Name="building_FK_1" Association="Self.building_FK_1">
+            <End Role="order_detail" EntitySet="order_detail" />
+            <End Role="building" EntitySet="building" />
+          </AssociationSet>
+          <AssociationSet Name="order_FK" Association="Self.order_FK">
+            <End Role="client" EntitySet="client" />
+            <End Role="order" EntitySet="order" />
+          </AssociationSet>
+          <AssociationSet Name="department_FK" Association="Self.department_FK">
+            <End Role="factory" EntitySet="factory" />
+            <End Role="department" EntitySet="department" />
+          </AssociationSet>
+          <AssociationSet Name="order_detail_FK" Association="Self.order_detail_FK">
+            <End Role="order" EntitySet="order" />
+            <End Role="order_detail" EntitySet="order_detail" />
+          </AssociationSet>
+          <AssociationSet Name="order_FK_1" Association="Self.order_FK_1">
+            <End Role="vehicle_model" EntitySet="vehicle_model" />
+            <End Role="order" EntitySet="order" />
+          </AssociationSet>
+          <AssociationSet Name="order_detail_FK_1" Association="Self.order_detail_FK_1">
+            <End Role="vehicle_part" EntitySet="vehicle_part" />
+            <End Role="order_detail" EntitySet="order_detail" />
+          </AssociationSet>
+          <AssociationSet Name="vehicle_model_FK_1" Association="Self.vehicle_model_FK_1">
+            <End Role="vehicle_type" EntitySet="vehicle_type" />
+            <End Role="vehicle_model" EntitySet="vehicle_model" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="homesteadModelStoreContainer" CdmEntityContainer="homesteadEntities">
+          <EntitySetMapping Name="brand">
+            <EntityTypeMapping TypeName="homesteadModel.brand">
+              <MappingFragment StoreEntitySet="brand">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="building">
+            <EntityTypeMapping TypeName="homesteadModel.building">
+              <MappingFragment StoreEntitySet="building">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_order_detail" ColumnName="id_order_detail" />
+                <ScalarProperty Name="id_department" ColumnName="id_department" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="client">
+            <EntityTypeMapping TypeName="homesteadModel.client">
+              <MappingFragment StoreEntitySet="client">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="department">
+            <EntityTypeMapping TypeName="homesteadModel.department">
+              <MappingFragment StoreEntitySet="department">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_factory" ColumnName="id_factory" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="factory">
+            <EntityTypeMapping TypeName="homesteadModel.factory">
+              <MappingFragment StoreEntitySet="factory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order">
+            <EntityTypeMapping TypeName="homesteadModel.order">
+              <MappingFragment StoreEntitySet="order">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_vehicle_model" ColumnName="id_vehicle_model" />
+                <ScalarProperty Name="id_client" ColumnName="id_client" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order_detail">
+            <EntityTypeMapping TypeName="homesteadModel.order_detail">
+              <MappingFragment StoreEntitySet="order_detail">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_order" ColumnName="id_order" />
+                <ScalarProperty Name="id_vehicle_part" ColumnName="id_vehicle_part" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="material" ColumnName="material" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vehicle_model">
+            <EntityTypeMapping TypeName="homesteadModel.vehicle_model">
+              <MappingFragment StoreEntitySet="vehicle_model">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_vehicle_type" ColumnName="id_vehicle_type" />
+                <ScalarProperty Name="id_brand" ColumnName="id_brand" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vehicle_part">
+            <EntityTypeMapping TypeName="homesteadModel.vehicle_part">
+              <MappingFragment StoreEntitySet="vehicle_part">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vehicle_type">
+            <EntityTypeMapping TypeName="homesteadModel.vehicle_type">
+              <MappingFragment StoreEntitySet="vehicle_type">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
