@@ -97,8 +97,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientController.cs" />
-    <Compile Include="VehicleController.cs" />
+    <Compile Include="Client\ClientController.cs" />
+    <Compile Include="Order\IOrderBuilder.cs" />
+    <Compile Include="Order\OrderController.cs" />
+    <Compile Include="Order\OrderDirector.cs" />
+    <Compile Include="Vehicle\VehicleController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -137,11 +137,11 @@ namespace Views
             // btnNuevoDetalle
             // 
             this.btnNuevoDetalle.Enabled = false;
-            this.btnNuevoDetalle.Location = new System.Drawing.Point(811, 235);
+            this.btnNuevoDetalle.Location = new System.Drawing.Point(747, 235);
             this.btnNuevoDetalle.Name = "btnNuevoDetalle";
-            this.btnNuevoDetalle.Size = new System.Drawing.Size(133, 40);
+            this.btnNuevoDetalle.Size = new System.Drawing.Size(197, 40);
             this.btnNuevoDetalle.TabIndex = 10;
-            this.btnNuevoDetalle.Text = "Añadir Detalle";
+            this.btnNuevoDetalle.Text = "Añadir Personalización";
             this.btnNuevoDetalle.UseVisualStyleBackColor = true;
             this.btnNuevoDetalle.Click += new System.EventHandler(this.btnNuevoDetalle_Click);
             // 
@@ -151,8 +151,9 @@ namespace Views
             this.btnConfirmaOrden.Name = "btnConfirmaOrden";
             this.btnConfirmaOrden.Size = new System.Drawing.Size(202, 40);
             this.btnConfirmaOrden.TabIndex = 11;
-            this.btnConfirmaOrden.Text = "Añadir Detalle";
+            this.btnConfirmaOrden.Text = "Confirmar Orden";
             this.btnConfirmaOrden.UseVisualStyleBackColor = true;
+            this.btnConfirmaOrden.Click += new System.EventHandler(this.btnConfirmaOrden_Click);
             // 
             // FrmNuevaOrden
             // 

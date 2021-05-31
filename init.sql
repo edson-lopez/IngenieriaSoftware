@@ -26,7 +26,7 @@ CREATE TABLE `brand` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,6 +35,7 @@ CREATE TABLE `brand` (
 
 LOCK TABLES `brand` WRITE;
 /*!40000 ALTER TABLE `brand` DISABLE KEYS */;
+INSERT INTO `brand` VALUES (3,'BMW'),(4,'Toyota'),(5,'Tesla'),(6,'Ferrari');
 /*!40000 ALTER TABLE `brand` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,7 +82,7 @@ CREATE TABLE `client` (
   `phone` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,6 +91,7 @@ CREATE TABLE `client` (
 
 LOCK TABLES `client` WRITE;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
+INSERT INTO `client` VALUES (1,'Omar','Barrios','653982743','momar@gmail.com'),(2,'Dilan','Milla','765389021','milla@gmail.com'),(3,'Genfferson','Caal','827123293','geff@gmail.com');
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -107,7 +109,7 @@ CREATE TABLE `department` (
   PRIMARY KEY (`id`),
   KEY `department_FK` (`id_factory`),
   CONSTRAINT `department_FK` FOREIGN KEY (`id_factory`) REFERENCES `factory` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,6 +118,7 @@ CREATE TABLE `department` (
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
+INSERT INTO `department` VALUES (1,1,'Pintura'),(2,1,'Textiles'),(3,1,'Exclusividades'),(4,1,'Ingenieria Híbrida'),(5,1,'Ingeniería Eléctrica'),(6,1,'Ingeniería Gasolina');
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,7 +133,7 @@ CREATE TABLE `factory` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,6 +142,7 @@ CREATE TABLE `factory` (
 
 LOCK TABLES `factory` WRITE;
 /*!40000 ALTER TABLE `factory` DISABLE KEYS */;
+INSERT INTO `factory` VALUES (1,'Fábrica de Autos Uneatlantico');
 /*!40000 ALTER TABLE `factory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,7 +223,7 @@ CREATE TABLE `vehicle_model` (
   KEY `vehicle_model_FK_1` (`id_vehicle_type`),
   CONSTRAINT `vehicle_model_FK` FOREIGN KEY (`id_brand`) REFERENCES `brand` (`id`),
   CONSTRAINT `vehicle_model_FK_1` FOREIGN KEY (`id_vehicle_type`) REFERENCES `vehicle_type` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -228,6 +232,7 @@ CREATE TABLE `vehicle_model` (
 
 LOCK TABLES `vehicle_model` WRITE;
 /*!40000 ALTER TABLE `vehicle_model` DISABLE KEYS */;
+INSERT INTO `vehicle_model` VALUES (1,1,3,'MD-UNEAT-10','2021-05-30 15:07:17'),(2,2,3,'MD-UNEAT-20','2021-05-30 15:07:19'),(3,3,4,'MD-UNEAT-30','2021-05-30 15:07:21'),(4,1,4,'MD-UNEAT-40','2021-05-30 15:07:23'),(5,2,5,'MD-UNEAT-50','2021-05-30 15:07:25'),(6,3,5,'MD-UNEAT-60','2021-05-30 15:07:26'),(7,1,6,'MD-UNEAT-70','2021-05-30 15:07:28'),(8,2,6,'MD-UNEAT-80','2021-05-30 15:07:30');
 /*!40000 ALTER TABLE `vehicle_model` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,7 +247,7 @@ CREATE TABLE `vehicle_part` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -251,6 +256,7 @@ CREATE TABLE `vehicle_part` (
 
 LOCK TABLES `vehicle_part` WRITE;
 /*!40000 ALTER TABLE `vehicle_part` DISABLE KEYS */;
+INSERT INTO `vehicle_part` VALUES (1,'Rines'),(2,'Pantalla'),(3,'Carroceria'),(4,'Interior'),(5,'Nevera'),(6,'Cortinas para Ventanilla'),(7,'Sistema Antirrobo');
 /*!40000 ALTER TABLE `vehicle_part` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,7 +271,7 @@ CREATE TABLE `vehicle_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -274,6 +280,7 @@ CREATE TABLE `vehicle_type` (
 
 LOCK TABLES `vehicle_type` WRITE;
 /*!40000 ALTER TABLE `vehicle_type` DISABLE KEYS */;
+INSERT INTO `vehicle_type` VALUES (1,'Gasolina'),(2,'Eléctrico'),(3,'Hibrido');
 /*!40000 ALTER TABLE `vehicle_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -290,4 +297,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-29 22:30:20
+-- Dump completed on 2021-05-31 23:32:00

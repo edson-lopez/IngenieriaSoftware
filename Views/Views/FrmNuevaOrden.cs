@@ -71,5 +71,10 @@ namespace Views
         {
 
         }
+
+        private void btnConfirmaOrden_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
