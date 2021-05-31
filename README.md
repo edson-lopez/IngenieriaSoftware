@@ -30,4 +30,6 @@ El contenedor mysql construido para nuestro proyecto está expuesto en el siguie
 ## Uso
 
 Posterior a la instalación de la base de datos, se ejecturá un script en automático para la creación del esquema necesario para el sistema.
-Una vez terminados los pasos anteriores, se debe proceder a ejecutar el archivo ejecutable (.exe).
+Una vez terminados los pasos anteriores, se debe proceder a ejecutar el archivo ejecutable (.exe). Situado en el siguiente Directorio:
+
+`\Views\Views\bin\Debug\Views.exe`
