@@ -26,6 +26,13 @@
     <Property Name="phone" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
+  <EntityType Name="color">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
   <EntityType Name="department">
     <Key>
       <PropertyRef Name="id" />
@@ -69,6 +76,15 @@
     <Property Name="id_brand" Type="int" Nullable="false" />
     <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="created_at" Type="datetime" Precision="0" Nullable="false" />
+    <Property Name="id_color" Type="int" Nullable="false" />
+    <Property Name="id_motor" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vehicle_motor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <EntityType Name="vehicle_part">
     <Key>
@@ -192,15 +208,41 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="vehicle_model_FK_2">
+    <End Role="color" Type="Self.color" Multiplicity="1" />
+    <End Role="vehicle_model" Type="Self.vehicle_model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="color">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="vehicle_model">
+        <PropertyRef Name="id_color" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="vehicle_model_FK_3">
+    <End Role="vehicle_motor" Type="Self.vehicle_motor" Multiplicity="1" />
+    <End Role="vehicle_model" Type="Self.vehicle_model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vehicle_motor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="vehicle_model">
+        <PropertyRef Name="id_motor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="homesteadModelStoreContainer">
     <EntitySet Name="brand" EntityType="Self.brand" Schema="homestead" store:Type="Tables" />
     <EntitySet Name="building" EntityType="Self.building" Schema="homestead" store:Type="Tables" />
     <EntitySet Name="client" EntityType="Self.client" Schema="homestead" store:Type="Tables" />
+    <EntitySet Name="color" EntityType="Self.color" Schema="homestead" store:Type="Tables" />
     <EntitySet Name="department" EntityType="Self.department" Schema="homestead" store:Type="Tables" />
     <EntitySet Name="factory" EntityType="Self.factory" Schema="homestead" store:Type="Tables" />
     <EntitySet Name="order" EntityType="Self.order" Schema="homestead" store:Type="Tables" />
     <EntitySet Name="order_detail" EntityType="Self.order_detail" Schema="homestead" store:Type="Tables" />
     <EntitySet Name="vehicle_model" EntityType="Self.vehicle_model" Schema="homestead" store:Type="Tables" />
+    <EntitySet Name="vehicle_motor" EntityType="Self.vehicle_motor" Schema="homestead" store:Type="Tables" />
     <EntitySet Name="vehicle_part" EntityType="Self.vehicle_part" Schema="homestead" store:Type="Tables" />
     <EntitySet Name="vehicle_type" EntityType="Self.vehicle_type" Schema="homestead" store:Type="Tables" />
     <AssociationSet Name="building_FK" Association="Self.building_FK">
@@ -237,6 +279,14 @@
     </AssociationSet>
     <AssociationSet Name="vehicle_model_FK_1" Association="Self.vehicle_model_FK_1">
       <End Role="vehicle_type" EntitySet="vehicle_type" />
+      <End Role="vehicle_model" EntitySet="vehicle_model" />
+    </AssociationSet>
+    <AssociationSet Name="vehicle_model_FK_2" Association="Self.vehicle_model_FK_2">
+      <End Role="color" EntitySet="color" />
+      <End Role="vehicle_model" EntitySet="vehicle_model" />
+    </AssociationSet>
+    <AssociationSet Name="vehicle_model_FK_3" Association="Self.vehicle_model_FK_3">
+      <End Role="vehicle_motor" EntitySet="vehicle_motor" />
       <End Role="vehicle_model" EntitySet="vehicle_model" />
     </AssociationSet>
   </EntityContainer>

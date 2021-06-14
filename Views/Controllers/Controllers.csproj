@@ -98,9 +98,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\ClientController.cs" />
-    <Compile Include="Order\IOrderBuilder.cs" />
     <Compile Include="Order\OrderController.cs" />
-    <Compile Include="Order\OrderDirector.cs" />
+    <Compile Include="Vehicle\Builders\bmwBuilder.cs" />
+    <Compile Include="Vehicle\Builders\ferrariBuilder.cs" />
+    <Compile Include="Vehicle\Builders\teslaBuilder.cs" />
+    <Compile Include="Vehicle\Builders\toyotaBuilder.cs" />
+    <Compile Include="Vehicle\Color.cs" />
+    <Compile Include="Vehicle\Model.cs" />
+    <Compile Include="Vehicle\ModelBuilder.cs" />
+    <Compile Include="Vehicle\Motor.cs" />
+    <Compile Include="Vehicle\Type.cs" />
     <Compile Include="Vehicle\VehicleController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

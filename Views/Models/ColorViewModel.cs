@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Controllers.Order
+namespace Models
 {
-    interface IOrderBuilder
+    public class ColorViewModel
     {
-        void insertaBrand();
-
-        void inserta
+        public int id { get; set; }
+        public string Nombre { get; set; }
     }
 }

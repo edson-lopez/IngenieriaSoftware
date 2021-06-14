@@ -100,6 +100,7 @@
   <ItemGroup>
     <Compile Include="BrandViewModel.cs" />
     <Compile Include="ClientViewModel.cs" />
+    <Compile Include="ColorViewModel.cs" />
     <Compile Include="EF\brand.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
@@ -107,6 +108,9 @@
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\client.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\color.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\DB.Context.cs">
@@ -139,12 +143,17 @@
     <Compile Include="EF\vehicle_model.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\vehicle_motor.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\vehicle_part.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\vehicle_type.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelViewModel.cs" />
+    <Compile Include="MotorViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VehicleViewModel.cs" />
     <Compile Include="VehicleTypeViewModel.cs" />

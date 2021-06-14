@@ -24,8 +24,6 @@ namespace Views
 
         private void btnNuevaOrden_Click(object sender, EventArgs e)
         {
-            FrmNuevaOrden frm = new FrmNuevaOrden();
-            frm.ShowDialog();
         }
 
         private void btnOrdenes_Click(object sender, EventArgs e)
@@ -45,7 +43,8 @@ namespace Views
 
         private void btnEstadoFabrica_Click(object sender, EventArgs e)
         {
-
+            FrmNuevoVehiculo frm = new FrmNuevoVehiculo();
+            frm.ShowDialog();
         }
 
         private void btnDepartamentos_Click(object sender, EventArgs e)

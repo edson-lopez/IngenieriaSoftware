@@ -35,5 +35,7 @@ namespace Models.EF
         public virtual DbSet<vehicle_model> vehicle_model { get; set; }
         public virtual DbSet<vehicle_part> vehicle_part { get; set; }
         public virtual DbSet<vehicle_type> vehicle_type { get; set; }
+        public virtual DbSet<color> color { get; set; }
+        public virtual DbSet<vehicle_motor> vehicle_motor { get; set; }
     }
 }

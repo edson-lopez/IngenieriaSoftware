@@ -71,6 +71,8 @@
     <EntitySetMapping Name="vehicle_model">
       <EntityTypeMapping TypeName="homesteadModel.vehicle_model">
         <MappingFragment StoreEntitySet="vehicle_model">
+          <ScalarProperty Name="id_motor" ColumnName="id_motor" />
+          <ScalarProperty Name="id_color" ColumnName="id_color" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="id_vehicle_type" ColumnName="id_vehicle_type" />
           <ScalarProperty Name="id_brand" ColumnName="id_brand" />
@@ -92,6 +94,22 @@
         <MappingFragment StoreEntitySet="vehicle_type">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="color">
+      <EntityTypeMapping TypeName="homesteadModel.color">
+        <MappingFragment StoreEntitySet="color">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vehicle_motor">
+      <EntityTypeMapping TypeName="homesteadModel.vehicle_motor">
+        <MappingFragment StoreEntitySet="vehicle_motor">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

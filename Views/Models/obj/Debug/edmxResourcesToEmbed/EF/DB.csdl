@@ -85,6 +85,10 @@
     <NavigationProperty Name="brand" Relationship="Self.vehicle_model_FK" FromRole="vehicle_model" ToRole="brand" />
     <NavigationProperty Name="order" Relationship="Self.order_FK_1" FromRole="vehicle_model" ToRole="order" />
     <NavigationProperty Name="vehicle_type" Relationship="Self.vehicle_model_FK_1" FromRole="vehicle_model" ToRole="vehicle_type" />
+    <Property Name="id_color" Type="Int32" Nullable="false" />
+    <Property Name="id_motor" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="color" Relationship="homesteadModel.vehicle_model_FK_2" FromRole="vehicle_model" ToRole="color" />
+    <NavigationProperty Name="vehicle_motor" Relationship="homesteadModel.vehicle_model_FK_3" FromRole="vehicle_model" ToRole="vehicle_motor" />
   </EntityType>
   <EntityType Name="vehicle_part">
     <Key>
@@ -257,5 +261,55 @@
       <End Role="vehicle_type" EntitySet="vehicle_type" />
       <End Role="vehicle_model" EntitySet="vehicle_model" />
     </AssociationSet>
+    <EntitySet Name="color" EntityType="homesteadModel.color" />
+    <EntitySet Name="vehicle_motor" EntityType="homesteadModel.vehicle_motor" />
+    <AssociationSet Name="vehicle_model_FK_2" Association="homesteadModel.vehicle_model_FK_2">
+      <End Role="color" EntitySet="color" />
+      <End Role="vehicle_model" EntitySet="vehicle_model" />
+    </AssociationSet>
+    <AssociationSet Name="vehicle_model_FK_3" Association="homesteadModel.vehicle_model_FK_3">
+      <End Role="vehicle_motor" EntitySet="vehicle_motor" />
+      <End Role="vehicle_model" EntitySet="vehicle_model" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="color">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="vehicle_model" Relationship="homesteadModel.vehicle_model_FK_2" FromRole="color" ToRole="vehicle_model" />
+  </EntityType>
+  <EntityType Name="vehicle_motor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="vehicle_model" Relationship="homesteadModel.vehicle_model_FK_3" FromRole="vehicle_motor" ToRole="vehicle_model" />
+  </EntityType>
+  <Association Name="vehicle_model_FK_2">
+    <End Type="homesteadModel.color" Role="color" Multiplicity="1" />
+    <End Type="homesteadModel.vehicle_model" Role="vehicle_model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="color">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="vehicle_model">
+        <PropertyRef Name="id_color" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="vehicle_model_FK_3">
+    <End Type="homesteadModel.vehicle_motor" Role="vehicle_motor" Multiplicity="1" />
+    <End Type="homesteadModel.vehicle_model" Role="vehicle_model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vehicle_motor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="vehicle_model">
+        <PropertyRef Name="id_motor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

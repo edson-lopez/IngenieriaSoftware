@@ -132,7 +132,7 @@ namespace Views
             this.btnEstadoFabrica.Name = "btnEstadoFabrica";
             this.btnEstadoFabrica.Size = new System.Drawing.Size(271, 60);
             this.btnEstadoFabrica.TabIndex = 0;
-            this.btnEstadoFabrica.Text = "Reporte";
+            this.btnEstadoFabrica.Text = "Nuevo Modelo";
             this.btnEstadoFabrica.UseVisualStyleBackColor = true;
             this.btnEstadoFabrica.Click += new System.EventHandler(this.btnEstadoFabrica_Click);
             // 

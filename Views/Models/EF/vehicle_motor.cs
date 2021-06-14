@@ -12,27 +12,18 @@ namespace Models.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class vehicle_model
+    public partial class vehicle_motor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public vehicle_model()
+        public vehicle_motor()
         {
-            this.order = new HashSet<order>();
+            this.vehicle_model = new HashSet<vehicle_model>();
         }
     
         public int id { get; set; }
-        public int id_vehicle_type { get; set; }
-        public int id_brand { get; set; }
         public string name { get; set; }
-        public System.DateTime created_at { get; set; }
-        public int id_color { get; set; }
-        public int id_motor { get; set; }
     
-        public virtual brand brand { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<order> order { get; set; }
-        public virtual vehicle_type vehicle_type { get; set; }
-        public virtual color color { get; set; }
-        public virtual vehicle_motor vehicle_motor { get; set; }
+        public virtual ICollection<vehicle_model> vehicle_model { get; set; }
     }
 }
