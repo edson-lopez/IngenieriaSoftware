@@ -91,7 +91,7 @@ namespace Views
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Size = new System.Drawing.Size(271, 60);
             this.btnClientes.TabIndex = 1;
-            this.btnClientes.Text = "Registrados";
+            this.btnClientes.Text = "Notificaciones";
             this.btnClientes.UseVisualStyleBackColor = true;
             this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 
@@ -101,7 +101,7 @@ namespace Views
             this.btnNuevoCliente.Name = "btnNuevoCliente";
             this.btnNuevoCliente.Size = new System.Drawing.Size(271, 60);
             this.btnNuevoCliente.TabIndex = 0;
-            this.btnNuevoCliente.Text = "Nuevo";
+            this.btnNuevoCliente.Text = "Registro";
             this.btnNuevoCliente.UseVisualStyleBackColor = true;
             this.btnNuevoCliente.Click += new System.EventHandler(this.btnNuevoCliente_Click);
             // 

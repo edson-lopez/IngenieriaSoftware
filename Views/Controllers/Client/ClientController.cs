@@ -18,11 +18,30 @@ namespace Controllers
                              select new Models.ClientViewModel
                              {
                                  id = d.id,
-                                 Nombre = d.name + " " + d.lastname
+                                 Nombre = d.name,
+                                 Apellido = d.lastname,
+                                 Telefono = d.phone,
+                                 Email = d.email
                              }).ToList();
             }
             return lstClient;
 
+        }
+
+        public void saveClient(string _name, string _lastname, string _phone, string _email)
+        {
+            using (Models.EF.homesteadEntities db = new Models.EF.homesteadEntities())
+            {
+                db.client.Add(new Models.EF.client
+                {
+                    name = _name,
+                    lastname = _lastname,
+                    phone = _phone,
+                    email = _email
+                });
+
+                db.SaveChanges();
+            }
         }
     }
 }

@@ -33,12 +33,14 @@ namespace Views
 
         private void btnNuevoCliente_Click(object sender, EventArgs e)
         {
-
+            FrmCliente frm = new FrmCliente();
+            frm.ShowDialog();
         }
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-
+            FrmNotificaciones frm = new FrmNotificaciones();
+            frm.ShowDialog();
         }
 
         private void btnEstadoFabrica_Click(object sender, EventArgs e)

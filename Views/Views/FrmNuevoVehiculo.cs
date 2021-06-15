@@ -14,7 +14,6 @@ namespace Views
     public partial class FrmNuevoVehiculo : Form
     {
         Controllers.VehicleController vehicleController = new Controllers.VehicleController();
-        Controllers.ClientController clientController = new Controllers.ClientController();
         
         public FrmNuevoVehiculo()
         {
