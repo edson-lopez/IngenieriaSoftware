@@ -33,4 +33,3 @@ D:\UNEAT\ASIGNATURAS\Ingeniería de Software2\IngenieriaSoftware\Views\Models\ob
 D:\UNEAT\ASIGNATURAS\Ingeniería de Software2\IngenieriaSoftware\Views\Models\obj\Debug\Models.csproj.CopyComplete
 D:\UNEAT\ASIGNATURAS\Ingeniería de Software2\IngenieriaSoftware\Views\Models\obj\Debug\Models.dll
 D:\UNEAT\ASIGNATURAS\Ingeniería de Software2\IngenieriaSoftware\Views\Models\obj\Debug\Models.pdb
-D:\UNEAT\ASIGNATURAS\Ingeniería de Software2\IngenieriaSoftware\Views\Models\obj\Debug\Models.csprojAssemblyReference.cache
