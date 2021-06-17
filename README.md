@@ -20,7 +20,7 @@ Patrones Utilizados:
 
 ## Instalación
 
-1. Asegurese de tener [Docker Instalado](https://docs.docker.com/docker-for-mac/install/) en tu sistema, y despues clona este repositorio.
+1. Asegurese de tener [Docker Instalado](https://docs.docker.com/docker-for-windows/install/) en tu sistema, y despues clona este repositorio.
 
 2. Navega en tu terminal hasta el directorio con el repositorio de Este proyecto clonado, despliega los contenedores correspondientes mediante el comando `docker-compose up -d`.
 El contenedor mysql construido para nuestro proyecto está expuesto en el siguiente puerto:
